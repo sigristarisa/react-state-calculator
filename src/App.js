@@ -9,9 +9,12 @@ function App() {
 
   const getNumOne = (num) => setNumOne(Number(numOne + num));
   const clearNumOne = () => setNumOne(0);
+
   const getNumTwo = (num) => setNumTwo(Number(numTwo + num));
   const clearNumTwo = () => setNumTwo(0);
+
   const getMethod = (type) => setMethod(type);
+
   const getAnswer = (numOne, numTwo, method) => {
     if (method === "+") setAnswer(numOne + numTwo);
     if (method === "-") setAnswer(numOne - numTwo);
@@ -66,8 +69,9 @@ function App() {
       </div>
       <div className="panel answer">
         <p>{answer}</p>
-        <div>
+        <div className="answer-btn">
           <button onClick={() => getAnswer(numOne, numTwo, method)}>=</button>
+          <button>Store Answer</button>
         </div>
       </div>
     </div>
