@@ -2,13 +2,15 @@ import "./App.css";
 import { useState } from "react";
 
 function App() {
-  const [numOne, setNumOne] = useState("");
-  const [numTwo, setNumTwo] = useState("");
+  const [numOne, setNumOne] = useState(0);
+  const [numTwo, setNumTwo] = useState(0);
   const [method, setMethod] = useState("+");
   const [answer, setAnswer] = useState(0);
 
   const getNumOne = (num) => setNumOne(Number(numOne + num));
+  const clearNumOne = () => setNumOne(0);
   const getNumTwo = (num) => setNumTwo(Number(numTwo + num));
+  const clearNumTwo = () => setNumTwo(0);
   const getMethod = (type) => setMethod(type);
   const getAnswer = (numOne, numTwo, method) => {
     if (method === "+") setAnswer(numOne + numTwo);
@@ -32,7 +34,7 @@ function App() {
           <button onClick={() => getNumOne("8")}>8</button>
           <button onClick={() => getNumOne("9")}>9</button>
           <button onClick={() => getNumOne("0")}>0</button>
-          <button>Clear</button>
+          <button onClick={() => clearNumOne()}>Clear</button>
         </div>
       </div>
 
@@ -59,7 +61,7 @@ function App() {
           <button onClick={() => getNumTwo("8")}>8</button>
           <button onClick={() => getNumTwo("9")}>9</button>
           <button onClick={() => getNumTwo("0")}>0</button>
-          <button>Clear</button>
+          <button onClick={() => clearNumTwo()}>Clear</button>
         </div>
       </div>
       <div className="panel answer">
