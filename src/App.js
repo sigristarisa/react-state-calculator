@@ -4,16 +4,23 @@ import { useState } from "react";
 function App() {
   const [numOne, setNumOne] = useState("");
   const [numTwo, setNumTwo] = useState("");
-  const [method, setMethod] = useState();
-  const [answer, setAnswer] = useState();
+  const [method, setMethod] = useState("+");
+  const [answer, setAnswer] = useState(0);
 
-  const getNumOne = (num) => setNumOne(numOne + num);
-  const getNumTwo = (num) => setNumTwo(numTwo + num);
+  const getNumOne = (num) => setNumOne(Number(numOne + num));
+  const getNumTwo = (num) => setNumTwo(Number(numTwo + num));
+  const getMethod = (type) => setMethod(type);
+  const getAnswer = (numOne, numTwo, method) => {
+    if (method === "+") setAnswer(numOne + numTwo);
+    if (method === "-") setAnswer(numOne - numTwo);
+    if (method === "*") setAnswer(numOne * numTwo);
+    if (method === "/") setAnswer(numOne / numTwo);
+  };
 
   return (
     <div className="calculator">
       <div className="panel">
-        <p>{Number(numOne)}</p>
+        <p>{numOne}</p>
         <div className="numbers">
           <button onClick={() => getNumOne("1")}>1</button>
           <button onClick={() => getNumOne("2")}>2</button>
@@ -30,17 +37,17 @@ function App() {
       </div>
 
       <div className="panel">
-        <p>+</p>
+        <p>{method}</p>
         <div className="numbers">
-          <button>+</button>
-          <button>-</button>
-          <button>*</button>
-          <button>÷</button>
+          <button onClick={() => getMethod("+")}>+</button>
+          <button onClick={() => getMethod("-")}>-</button>
+          <button onClick={() => getMethod("*")}>*</button>
+          <button onClick={() => getMethod("/")}>÷</button>
         </div>
       </div>
 
       <div className="panel">
-        <p>{Number(numTwo)}</p>
+        <p>{numTwo}</p>
         <div className="numbers">
           <button onClick={() => getNumTwo("1")}>1</button>
           <button onClick={() => getNumTwo("2")}>2</button>
@@ -56,9 +63,9 @@ function App() {
         </div>
       </div>
       <div className="panel answer">
-        <p>0</p>
+        <p>{answer}</p>
         <div>
-          <button>=</button>
+          <button onClick={() => getAnswer(numOne, numTwo, method)}>=</button>
         </div>
       </div>
     </div>
